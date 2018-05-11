@@ -110,7 +110,9 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/resultado"/>
+            android:id="@+id/resultado"
+            android:text=" "
+            android:textColor="@android:color/black"/>
 
     </LinearLayout>
 
