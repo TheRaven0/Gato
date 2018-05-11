@@ -10,9 +10,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_reset;
     public int jugador, turno = 0;
+    public boolean fin = false;
     public EditText resultado;
+    public char simbolo;
     public Gato tablero;
-    public Button[] tablero_btn;
+    public Button[][] tablero_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_9.setOnClickListener(this);
         btn_reset.setOnClickListener(this);
 
-        tablero_btn = new Button[] {btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_reset};
+        tablero_btn = new Button[][] {{btn_1, btn_2, btn_3}, {btn_4, btn_5, btn_6}, {btn_7, btn_8, btn_9}};
 
     }
 
@@ -55,18 +57,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jugador = turno % 2;
 
         if (jugador == 0)
-            seleccionar('X', v);
+            simbolo = 'X';
         else
-            seleccionar('O', v);
+            simbolo = 'O';
 
+        seleccionar(simbolo, v);
+
+        ganar(tablero.finalizar(tablero_btn, turno, jugador, simbolo));
         restart(v);
     }
 
+    public void ganar(int res)
+    {
+        if (res == 2)
+        {
+            resultado.setText("Empate.");
+            fin = true;
+        }
+        else if (res == 0)
+        {
+            resultado.setText("Gana el jugador 2.");
+            fin = true;
+        }
+        else if (res == 1)
+        {
+            resultado.setText("Gana el jugador 1");
+            fin = true;
+        }
+
+        if (fin)
+        {
+            resultado.setEnabled(false);
+            btn_1.setEnabled(false);
+            btn_2.setEnabled(false);
+            btn_3.setEnabled(false);
+            btn_4.setEnabled(false);
+            btn_5.setEnabled(false);
+            btn_6.setEnabled(false);
+            btn_7.setEnabled(false);
+            btn_8.setEnabled(false);
+            btn_9.setEnabled(false);
+        }
+    }
 
     public void restart(View v)
     {
         if (v.getId() == R.id.reset)
         {
+            fin = false;
+            turno = 0;
             resultado.setEnabled(false);
             resultado.setText(" ");
             btn_1.setEnabled(true);
