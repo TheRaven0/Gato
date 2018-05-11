@@ -9,13 +9,17 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     public Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_reset;
-    public int jugador, turno;
+    public int jugador, turno = 0;
     public EditText resultado;
+    public Gato tablero;
+    public Button[] tablero_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tablero = new Gato();
 
         resultado = (EditText)(findViewById(R.id.resultado));
 
@@ -41,10 +45,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_9.setOnClickListener(this);
         btn_reset.setOnClickListener(this);
 
+        tablero_btn = new Button[] {btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9};
+
     }
 
     @Override
     public void onClick(View v) {
+        turno++;
+        jugador = turno % 2;
+
+        if (jugador == 0)
+            tablero.seleccionar('X', tablero_btn, v);
+        else
+            tablero.seleccionar('O', tablero_btn,v);
 
     }
 }
