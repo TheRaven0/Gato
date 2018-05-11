@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_9.setOnClickListener(this);
         btn_reset.setOnClickListener(this);
 
-        tablero_btn = new Button[] {btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9};
+        tablero_btn = new Button[] {btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_reset};
 
     }
 
@@ -55,9 +55,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jugador = turno % 2;
 
         if (jugador == 0)
-            tablero.seleccionar('X', tablero_btn, v);
+            seleccionar('X', v);
         else
-            tablero.seleccionar('O', tablero_btn,v);
+            seleccionar('O', v);
 
+        restart(v);
+    }
+
+
+    public void restart(View v)
+    {
+        if (v.getId() == R.id.reset)
+        {
+            resultado.setEnabled(false);
+            resultado.setText(" ");
+            btn_1.setEnabled(true);
+            btn_1.setText(" ");
+            btn_2.setEnabled(true);
+            btn_2.setText(" ");
+            btn_3.setEnabled(true);
+            btn_3.setText(" ");
+            btn_4.setEnabled(true);
+            btn_4.setText(" ");
+            btn_5.setEnabled(true);
+            btn_5.setText(" ");
+            btn_6.setEnabled(true);
+            btn_6.setText(" ");
+            btn_7.setEnabled(true);
+            btn_7.setText(" ");
+            btn_8.setEnabled(true);
+            btn_8.setText(" ");
+            btn_9.setEnabled(true);
+            btn_9.setText(" ");
+        }
+    }
+
+    public void seleccionar(char simbolo, View v)
+    {
+        if (v.getId() == R.id.btn1)
+        {
+            btn_1.setText(simbolo + "");
+            btn_1.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn2)
+        {
+            btn_2.setText(simbolo + "");
+            btn_2.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn3)
+        {
+            btn_3.setText(simbolo + "");
+            btn_3.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn4)
+        {
+            btn_4.setText(simbolo + "");
+            btn_4.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn5)
+        {
+            btn_5.setText(simbolo + "");
+            btn_5.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn6)
+        {
+            btn_6.setText(simbolo + "");
+            btn_6.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn7)
+        {
+            btn_7.setText(simbolo + "");
+            btn_7.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn8)
+        {
+            btn_8.setText(simbolo + "");
+            btn_8.setEnabled(false);
+        }
+        else if(v.getId() == R.id.btn9)
+        {
+            btn_9.setText(simbolo + "");
+            btn_9.setEnabled(false);
+        }
     }
 }
