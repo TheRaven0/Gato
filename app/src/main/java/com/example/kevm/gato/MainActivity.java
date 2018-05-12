@@ -4,14 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     public Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_reset;
     public int jugador, turno = 0;
     public boolean fin = false;
-    public EditText resultado;
+    public TextView resultado;
     public char simbolo;
     public Gato tablero;
     public Button[][] tablero_btn;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         tablero = new Gato();
 
-        resultado = (EditText)(findViewById(R.id.resultado));
+        resultado = (TextView) (findViewById(R.id.resultado));
 
         btn_1 = (Button)(findViewById(R.id.btn1));
         btn_2 = (Button)(findViewById(R.id.btn2));
